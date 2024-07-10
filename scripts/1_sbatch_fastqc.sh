@@ -4,8 +4,8 @@
 #SBATCH --time=04:00:00
 #SBATCH -N 1
 #SBATCH -n 2
-#SBATCH --output=/work/geisingerlab/Mark/breseq/2024-05-21_breseq/logs/%x-%j.out
-#SBATCH --error=/work/geisingerlab/Mark/breseq/2024-05-21_breseq/logs/%x-%j.err
+#SBATCH --output=/work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/logs/%x-%j.out
+#SBATCH --error=/work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/logs/%x-%j.err
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=soo.m@northeastern.edu
 
