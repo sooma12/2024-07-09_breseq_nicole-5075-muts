@@ -30,30 +30,17 @@ cutadapt --version
 ```
 
 Trim adapters
-Illumina's website (https://support-docs.illumina.com/SHARE/AdapterSequences/Content/SHARE/AdapterSeq/Nextera/SequencesNextera_Illumina.htm) gives the following adapter sequences:
+Fastqc's adapter_list.txt file (https://github.com/golharam/FastQC/blob/master/Configuration/adapter_list.txt)lists the following for the Nextera adapter: 
+Nextera Transposase Sequence				CTGTCTCTTATA
 
-Nextera Transposase Adapters
-The following transposase adapters are used for Nextera tagmentation.
-Read 1
-5′ TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG
-
-Read 2
-5′ GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGA
-
-Command:
-`cutadapt -a AACCGGTT -o output.fastq input.fastq`
-
-Pass both adapters just to see what happens.
-
-Test:
-`cutadapt -a TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG -a GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGA -o 7141_S7_L001_R1_001_trimmed.fastq 7141_S7_L001_R1_001.fastq`
-
-Process all:
 ```bash
+conda activate /work/geisingerlab/conda_env/cutadapt
 
-for file in *1.fastq; do 
+# Previously moved untrimmed files to ./input/fastq/untrimmed.  Run this from untrimmed directory.
+for file in *.fastq; do 
   base_name=($echo "${file%%.*}")
-  cutadapt -a TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG -a GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGA -o ${base_name}_trimmed.fastq ${file} 1> ${base_name}_report.txt
+  cutadapt -a CTGTCTCTTATA -o ../${base_name}_trimmed.fastq ${file} 1> ../cutadapt_reports/${base_name}_report_adapterlist.txt
 done
  
 ```
+
