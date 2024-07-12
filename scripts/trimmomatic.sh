@@ -13,6 +13,8 @@
 module load oracle_java/jdk1.8.0_181
 module load trimmomatic/0.39
 
+source config.cfg
+
 # path to NU Discovery cluster's Trimmomatic program folder with Illumina adapters
 PATH_TO_TRIMMOMATIC="/shared/centos7/anaconda3/2021.11/envs/BINF-12-2021/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2"
 
