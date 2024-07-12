@@ -14,7 +14,7 @@ PATH_TO_TRIMMOMATIC="/shared/centos7/anaconda3/2021.11/envs/BINF-12-2021/pkgs/tr
 
 ## Initialize variables to contain file suffixes and output paths
 inSuffix="_R1_001.fastq"
-outSuffix="_trimmed_R1.fastq"
+outSuffix="_trimmo-trimmed_R1.fastq"
 
 FASTQ_DIR=/work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/input/fastq/untrimmed
 FASTQ_TRIM_OUT=/work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/input/fastq/paired
