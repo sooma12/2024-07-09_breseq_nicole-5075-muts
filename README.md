@@ -1,5 +1,3 @@
-
-
 ## File locations
 Nicole's mutants `/work/geisingerlab/Eddie/WGS2022-NR-bfmRS/fastq_Lane8`
 Additional files from Eddie `/work/geisingerlab/Eddie/WGS2017-AB5075parentstrains`
@@ -75,9 +73,33 @@ sed -n '7064441, 7064449'p NRA283_S93_L008_R1_001_trimmed.fastq
 ```
 
 Okay, if the problem is that some reads are being trimmed to a length of zero, we can tell cutadapt to keep only reads with a minimum length.
-Use option -m
+Use option -m 34 to prevent it from keeping reads of length 0
+
+```bash
+conda activate /work/geisingerlab/conda_env/cutadapt
+
+for file in *.fastq; do 
+  base_name=($echo "${file%%.*}")
+  cutadapt  -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -o -m 34 ../${base_name}_trimmed.fastq ${file} 1> ../cutadapt_reports/${base_name}_report_adapterlist.txt
+done
+ 
+```
 
 Retry clipping with fastx_clipper using parameters above.
+
+From EG:
+fastx/0.0.13
+clipoption="-a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -l 34 -d 0 -Q 33"
+
+```bash
+conda activate /work/geisingerlab/conda_env/fastx
+
+# Previously moved untrimmed files to ./input/fastq/untrimmed.  Run this from untrimmed directory.
+for file in *.fastq; do 
+  base_name=($echo "${file%%.*}")
+  fastx_clipper -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -l 34 -d 0 -Q 33 -i ${file} -o ../${base_name}_fxclip_trimmed.fastq
+done 
+```
 
 
 FINAL ANALYSIS:
@@ -90,3 +112,6 @@ REFERENCE_PAB1=/work/geisingerlab/REFERENCES/p1AB5075.gbk
 REFERENCE_PAB2=/work/geisingerlab/REFERENCES/p2AB5075.gbk
 REFERENCE_PAB3=/work/geisingerlab/REFERENCES/p3AB5075.gbk
 4. Zipped outputs using bash script 5_zip_all_outputs
+
+
+

@@ -29,6 +29,7 @@ echo "Running fastqc in directory $FASTQDIR"
 fastqc $FASTQDIR/*trimmed.fastq
 
 echo "Cleaning up logs and output files"
+
 mkdir -p $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
 mv $FASTQDIR/*fastqc.html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html
 mv $FASTQDIR/*fastqc.zip $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
