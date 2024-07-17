@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --partition=short
-#SBATCH --job-name=fastqc_trimmed
+#SBATCH --job-name=fastqc_trimmed_fastxclip
 #SBATCH --time=04:00:00
 #SBATCH -N 1
 #SBATCH -n 2
@@ -29,6 +29,6 @@ echo "Running fastqc in directory $FASTQDIR"
 fastqc $FASTQDIR/*trimmed.fastq
 
 echo "Cleaning up logs and output files"
-mkdir -p $FASTQC_OUT_DIR/fastqc_trim_egparams_html $FASTQC_OUT_DIR/fastqc_trim_egparams_zip
-mv $FASTQDIR/*fastqc.html $FASTQC_OUT_DIR/fastqc_trim_egparams_html
-mv $FASTQDIR/*fastqc.zip $FASTQC_OUT_DIR/fastqc_trim_egparams_zip
+mkdir -p $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
+mv $FASTQDIR/*fastqc.html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html
+mv $FASTQDIR/*fastqc.zip $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
