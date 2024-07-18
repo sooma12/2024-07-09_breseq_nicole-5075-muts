@@ -3,11 +3,11 @@
 # Usage: `bash 2a_make_sample_sheet_cutadapt.sh`
 
 source ./config.cfg
-echo "Fastq files found in: " $FASTQDIR/input/fastq/trimmed_fastxclip
+echo "Fastq files found in: " $FASTQDIR/trimmed_fastxclip
 echo "Sample sheet: " $SAMPLE_SHEET_FASTX
 
 # Create .list files with R1 and R2 fastqs.  Sort will put them in same orders, assuming files are paired
-find $FASTQDIR/input/fastq/trimmed_fastxclip -maxdepth 1 -name "*.fastq" | sort > R1.list
+find $FASTQDIR/trimmed_fastxclip -maxdepth 1 -name "*.fastq" | sort > R1.list
 
 # For debug purposes... delete sample sheet if it exists
 if [ -f "${SAMPLE_SHEET_FASTX}" ] ; then
