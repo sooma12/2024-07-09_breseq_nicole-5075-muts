@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --partition=short
-#SBATCH --job-name=fastqc_trimmed_fastxclip
+#SBATCH --job-name=fastqc
 #SBATCH --time=04:00:00
 #SBATCH -N 1
 #SBATCH -n 2
@@ -19,17 +19,16 @@ module load fastqc/0.11.9
 source ./config.cfg
 
 echo "Project directory: " $BASE_DIR
-echo "Fastq files location: " $FASTQDIR
+echo "Fastq files location: " $FASTQDIR/input/fastq/trimmed_fastxclip/
 echo "Fastqc output: " $FASTQC_OUT_DIR
-echo "Scripts found in: " $SCRIPT_DIR
 
-mkdir -p $FASTQDIR $FASTQC_OUT_DIR $SCRIPT_DIR
+mkdir -p $FASTQC_OUT_DIR
 
-echo "Running fastqc in directory $FASTQDIR"
-fastqc $FASTQDIR/*trimmed.fastq
+echo "Running fastqc in directory $FASTQDIR/input/fastq/trimmed_fastxclip/"
+fastqc $FASTQDIR/input/fastq/trimmed_fastxclip/*trimmed.fastq
 
 echo "Cleaning up logs and output files"
 
-mkdir -p $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
-mv $FASTQDIR/*fastqc.html $FASTQC_OUT_DIR/fastqc_trim_cutadapt_html
-mv $FASTQDIR/*fastqc.zip $FASTQC_OUT_DIR/fastqc_trim_cutadapt_zip
+mkdir -p $FASTQC_OUT_DIR/fastqc_trim_fastxclip_html $FASTQC_OUT_DIR/fastqc_trim_fastxclip_zip
+mv $FASTQDIR/*fastqc.html $FASTQC_OUT_DIR/fastqc_trim_fastxclip_html
+mv $FASTQDIR/*fastqc.zip $FASTQC_OUT_DIR/fastqc_trim_fastxclip_zip
