@@ -19,13 +19,13 @@ module load fastqc/0.11.9
 source ./config.cfg
 
 echo "Project directory: " $BASE_DIR
-echo "Fastq files location: " $FASTQDIR/input/fastq/trimmed_fastxclip/
+echo "Fastq files location: " $FASTQDIR/trimmed_fastxclip/
 echo "Fastqc output: " $FASTQC_OUT_DIR
 
 mkdir -p $FASTQC_OUT_DIR
 
-echo "Running fastqc in directory $FASTQDIR/input/fastq/trimmed_fastxclip/"
-fastqc $FASTQDIR/input/fastq/trimmed_fastxclip/*trimmed.fastq
+echo "Running fastqc in directory $FASTQDIR/trimmed_fastxclip/"
+fastqc $FASTQDIR/trimmed_fastxclip/*trimmed.fastq
 
 echo "Cleaning up logs and output files"
 

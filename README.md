@@ -49,10 +49,14 @@ fastx_clipper options `-a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -l 34 -d 0 -Q 33`
 
 cut adapt options `-a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -m 34`
 
+## fastqc
+
+Checked trimmed files with fastqc using scripts 1a, 1b
+
 ## Sample sheet prep
 
-
+Used scripts 2a, 2b to prepare sample sheets with names and file paths corresponding to fastq samples
 
 ## breseq
 
-
+Re-sequencing analysis performed using breseq with default settings 
