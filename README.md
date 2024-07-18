@@ -60,3 +60,11 @@ Used scripts 2a, 2b to prepare sample sheets with names and file paths correspon
 ## breseq
 
 Re-sequencing analysis performed using breseq with default settings 
+
+## Analysis
+
+Checked for presence of "output" subdirectory in each output folder to ensure complete breseq-ing
+
+Finished breseq using.... <>
+
+Used run_json_parser.sh to extract key data from 
