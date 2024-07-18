@@ -26,6 +26,6 @@ mkdir -p ${FASTQDIR}/cutadapt_reports
 echo "processing $file"
 base_path=($echo "${file%%.*}")
 base_name=$(basename $base_path)
-cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -m 34 -o $output_dir/${base_name}_cutadapt_trimmed.fastq.gz ${file} 1>${FASTQDIR}/cutadapt_reports/${base_name}_report_cutadapt.txt
+cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -m 34 -o $output_dir/${base_name}_cutadapt_trimmed.fastq ${file} 1>${FASTQDIR}/cutadapt_reports/${base_name}_report_cutadapt.txt
 
 echo "finished processing file"
