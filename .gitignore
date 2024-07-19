@@ -3,3 +3,8 @@
 *.fastq
 /logs
 /output
+./breseq_dirs.list
+nra_samples_to_trim.txt
+fastqs_to_trim.list
+sample_sheet_cutadapt.txt
+sample_sheet_fastx.txt
