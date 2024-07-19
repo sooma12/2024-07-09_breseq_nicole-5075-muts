@@ -12,6 +12,7 @@
 #     ...
 #     output
 #       summary.json
+# Note 7/18/2024: parse_summary_json is currently hard-coded for 5075 accession #s
 
 BRESEQ_PARENT_DIR=${1}
 JSON_PARSER_SCRIPT=/work/geisingerlab/Mark/breseq/breseq_scripts_mws/parse_summary_json.py
@@ -24,7 +25,13 @@ if [ -f "${out_filename}" ] ; then
   rm "${out_filename}"
 fi
 
-echo "read_file,total_reads,total_bases,percent_bases_mapped,chr_accession,chr_coverage_avg,chr_coverage_rel_variance,chr_num_reads_mapped,chr_num_bases_mapped,chr_length,chr_nbinom_fit_mean,chr_nbinom_fit_rel_var,pab1_accession,pab1_coverage_avg,pab1_coverage_rel_variance,pab1_num_reads_mapped,pab1_num_bases_mapped,pab1_length,pab1_nbinom_fit_mean,pab1_nbinom_fit_rel_var,pab2_accession,pab2_coverage_avg,pab2_coverage_rel_variance,pab2_num_reads_mapped,pab2_num_bases_mapped,pab2_length,pab2_nbinom_fit_mean,pab2_nbinom_fit_rel_var,pab3_accession,pab3_coverage_avg,pab3_coverage_rel_variance,pab3_num_reads_mapped,pab3_num_bases_mapped,pab3_length,pab3_nbinom_fit_mean,pab3_nbinom_fit_rel_var" >>$out_filename
+chr_access=CP008706
+pab1_access=CP008707
+pab2_access=CP008708
+pab3_access=CP008709
+
+
+echo "read_file,total_reads,total_bases,percent_bases_mapped,${chr_access}_accession,${chr_access}_coverage_avg,${chr_access}_coverage_rel_variance,${chr_access}_num_reads_mapped,${chr_access}_num_bases_mapped,${chr_access}_length,${chr_access}_nbinom_fit_mean,${chr_access}_nbinom_fit_rel_var,${pab1_access}_accession,${pab1_access}_coverage_avg,${pab1_access}_coverage_rel_variance,${pab1_access}_num_reads_mapped,${pab1_access}_num_bases_mapped,${pab1_access}_length,${pab1_access}_nbinom_fit_mean,${pab1_access}_nbinom_fit_rel_var,${pab2_access}_accession,${pab2_access}_coverage_avg,${pab2_access}_coverage_rel_variance,${pab2_access}_num_reads_mapped,${pab2_access}_num_bases_mapped,${pab2_access}_length,${pab2_access}_nbinom_fit_mean,${pab2_access}_nbinom_fit_rel_var,${pab3_access}_accession,${pab3_access}_coverage_avg,${pab3_access}_coverage_rel_variance,${pab3_access}_num_reads_mapped,${pab3_access}_num_bases_mapped,${pab3_access}_length,${pab3_access}_nbinom_fit_mean,${pab3_access}_nbinom_fit_rel_var" >>$out_filename
 
 paste breseq_dirs.list | while read dir ;
 do

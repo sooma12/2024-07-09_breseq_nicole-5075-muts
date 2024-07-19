@@ -63,7 +63,64 @@ Re-sequencing analysis performed using breseq with default settings
 
 ## Analysis
 
-Checked for presence of "output" subdirectory in each output folder to ensure complete breseq-ing
+
+### Check number of output directories and compare to number of input fastqs.
+
+In trimmed fastq directories: `find ./  -type f -name '*.fastq' | wc -l`
+
+untrimmed -> **94**
+
+trimmed_fastxclip -> **94**
+
+trimmed_cutadapt_34minlen_egadapter -> **94**
+
+Then, check in breseq output directories: `find . -mindepth 1 -maxdepth 1 -type d | wc -l`
+
+breseq-fastx-trimmed -> **94**
+
+breseq-cutadapt-trimmed -> **91**
+
+So breseq failed on 3 cutadapt-trimmed samples.
+
+Find these!
+
+`cd` to ./logs/breseq-cutadapt/
+
+Code below finds any files that do not have the "SUCCESSFULLY COMPLETED" line in the breseq output and prints the end of each.
+
+`
+grep -riL "+++   SUCCESSFULLY COMPLETED" ./*.err > unsuccessful.list
+paste unsuccessful.list | while read file; do echo; echo; echo $file; tail -n 20 $file; echo; done
+`
+
+./breseq_array_cutadapt_43341106_34.err -> NRA297
+./breseq_array_cutadapt_43341106_38.err -> NRA302
+./breseq_array_cutadapt_43341106_41.err -> NRA306
+./breseq_array_cutadapt_43341106_57.err -> NRA323
+./breseq_array_cutadapt_43341106_62.err -> NRA328
+./breseq_array_cutadapt_43341106_69.err -> NRA335
+./breseq_array_cutadapt_43341106_78.err -> NRA344
+./breseq_array_cutadapt_43341106_82.err -> NRA348
+./breseq_array_cutadapt_43341106_83.err -> NRA349
+./breseq_array_cutadapt_43341106_85.err -> NRA351
+./breseq_array_cutadapt_43341106_86.err -> NRA352
+./breseq_array_cutadapt_43341106_87.err -> NRA353
+./breseq_array_cutadapt_43341106_90.err -> NRA356
+./breseq_array_cutadapt_43341106_91.err -> NRA357
+
+
+### Verify presence of "output" subdirectories containing 
+
+Check for presence of "output" subdirectory in each output folder to ensure complete breseq-ing
+
+From the ./output/breseq/ directory, run:
+`find ./ -maxdepth 2 -mindepth 2 -type d '!' -exec test -e "{}/output/summary.json" ';' -print`
+
+Lists any subdirectory that does NOT contain an 'output/summary.json' file
+
+
+
+
 
 Finished breseq using.... <>
 

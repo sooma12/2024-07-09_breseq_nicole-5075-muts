@@ -25,7 +25,7 @@ echo "Reference genome files: " $REFERENCE_CHR $REFERENCE_PAB1 $REFERENCE_PAB2 $
 echo "Sample sheet: " $cutadapt_sheet
 echo "Breseq output saved to: " $BRESEQ_OUTPATH
 
-mkdir -p $BRESEQ_OUTPATH/cutadapt-trimmed
+mkdir -p $BRESEQ_OUTPATH/breseq-cutadapt
 
 # Run breseq
 # -r options specify reference genome(s)
@@ -35,6 +35,6 @@ name=`sed -n "$SLURM_ARRAY_TASK_ID"p $cutadapt_sheet |  awk '{print $1}'`
 r1=`sed -n "$SLURM_ARRAY_TASK_ID"p $cutadapt_sheet |  awk '{print $2}'`
 
 echo "Running breseq on file $r1"
-breseq -r ${REFERENCE_CHR} -r ${REFERENCE_PAB1} -r ${REFERENCE_PAB2} -r ${REFERENCE_PAB3} -o $BRESEQ_OUTPATH/cutadapt-trimmed/${name}_cutadapt ${r1}
+breseq -r ${REFERENCE_CHR} -r ${REFERENCE_PAB1} -r ${REFERENCE_PAB2} -r ${REFERENCE_PAB3} -o $BRESEQ_OUTPATH/breseq-cutadapt/${name}_cutadapt ${r1}
 
 echo "breseq script complete $(date)"
