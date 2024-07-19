@@ -3,7 +3,7 @@ source ./config.cfg
 
 mkdir -p ${CAT_OUT_PATH_FASTX}
 
-find ${BRESEQ_OUTPATH} -maxdepth 1 -mindepth 1 -type d > output_dirs.list
+find ${BRESEQ_OUTPATH_FASTX} -maxdepth 1 -mindepth 1 -type d > output_dirs.list
 
 # Written for filepaths like: /Users/mws/Documents/geisinger_lab_research/bioinformatics_in_acinetobacter/lirL_suppressor_mutations_breseq/2023-10-20_breseq/breseq_output/output_zips/MSA152
 paste output_dirs.list| while read directory ;
