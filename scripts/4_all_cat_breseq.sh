@@ -9,11 +9,14 @@ find ${BRESEQ_OUTPATH_FASTX} -maxdepth 1 -mindepth 1 -type d > output_dirs.list
 paste output_dirs.list| while read directory ;
 do
   rootname=$(basename ${directory})
+  echo
+  echo "BASH: running python script on " ${directory}
   python ${SCRIPT_DIR}/cat_breseq.py -i ${directory} -o ${CAT_OUT_PATH_FASTX}
-  echo "----completed python script ----"
-  echo "moving from ${CAT_OUT_PATH_FASTX}/Predicted_Mutations_all.txt to ${CAT_OUT_PATH_FASTX}/${rootname}_predicted_mutations.txt"
+  echo "BASH: ----completed python script ----"
+  echo "BASH: moving from ${CAT_OUT_PATH_FASTX}/Predicted_Mutations_all.txt to ${CAT_OUT_PATH_FASTX}/${rootname}_predicted_mutations.txt"
   mv ${CAT_OUT_PATH_FASTX}/Predicted_Mutations_all.txt ${CAT_OUT_PATH_FASTX}/${rootname}_predicted_mutations.txt
-  echo "moving from ${CAT_OUT_PATH_FASTX}/Unassigned_new_junction_evidence_all.txt to ${CAT_OUT_PATH_FASTX}/${rootname}_unassigned_new_junction_evidence.txt"
+  echo "BASH: moving from ${CAT_OUT_PATH_FASTX}/Unassigned_new_junction_evidence_all.txt to ${CAT_OUT_PATH_FASTX}/${rootname}_unassigned_new_junction_evidence.txt"
   mv ${CAT_OUT_PATH_FASTX}/Unassigned_new_junction_evidence_all.txt ${CAT_OUT_PATH_FASTX}/${rootname}_unassigned_new_junction_evidence.txt
-  echo "finished $rootname"
+  echo "BASH: finished $rootname"
+  echo
 done
