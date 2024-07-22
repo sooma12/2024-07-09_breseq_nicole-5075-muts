@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=short
 #SBATCH --job-name=finish-breseq-fastx
-#SBATCH --time=08:00:00
+#SBATCH --time=12:00:00
 #SBATCH --array=1-25%5
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=400G
@@ -23,4 +23,8 @@ echo "Breseq output saved to: " $BRESEQ_OUTPATH/breseq-fastx
 
 mkdir -p $BRESEQ_OUTPATH/breseq-fastx
 
-echo breseq -r ${REFERENCE_CHR} -r ${REFERENCE_PAB1} -r ${REFERENCE_PAB2} -r ${REFERENCE_PAB3} -o $BRESEQ_OUTPATH/breseq-fastx/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]} /work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/input/fastq/trimmed_fastxclip/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]}_S167_L008_R1_001_fastxclipper_trimmed.fastq
+echo "Running breseq on " /work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/input/fastq/trimmed_fastxclip/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]}_S167_L008_R1_001_fastxclipper_trimmed.fastq
+echo "Output to " $BRESEQ_OUTPATH/breseq-fastx/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]}
+
+
+breseq -r ${REFERENCE_CHR} -r ${REFERENCE_PAB1} -r ${REFERENCE_PAB2} -r ${REFERENCE_PAB3} -o $BRESEQ_OUTPATH/breseq-fastx/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]} /work/geisingerlab/Mark/breseq/2024-07-09_breseq_nicole-5075-muts/input/fastq/trimmed_fastxclip/NRA${unfinished_samples_array[$"$SLURM_ARRAY_TASK_ID"]}_S167_L008_R1_001_fastxclipper_trimmed.fastq
