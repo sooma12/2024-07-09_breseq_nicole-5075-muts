@@ -45,13 +45,10 @@ def index_reader(item, table, outfile, ignore, table_type):
             gene = text[5]
             description = text[6]
             # Discard mutations mapped to plasmid genes
-            if seq_id == "NZ_CP012004": 
-                if "ACX60_RS00525" not in gene:
-                    if ignore not in gene:
-                        result = [item, evidence, seq_id, position, mutation, annotation, gene, description]
-                        with open(outfile, 'a', newline='') as csvfile:
-                            output_writer = csv.writer(csvfile, delimiter='\t')
-                            output_writer.writerow(result)
+            result = [item, evidence, seq_id, position, mutation, annotation, gene, description]
+            with open(outfile, 'a', newline='') as csvfile:
+                output_writer = csv.writer(csvfile, delimiter='\t')
+                output_writer.writerow(result)
 
     elif table_type == 2:
         for row in table.find_all("tr")[2:]:
@@ -93,12 +90,12 @@ def main():
     else:
         outfile_1 = path.join(infile, "Predicted_Mutations_all.txt")
         outfile_2 = path.join(infile, "Unassigned_new_junction_evidence_all.txt")
-        with open(outfile_1, 'w', newline='') as csvfile_1:
-            output_writer = csv.writer(csvfile_1, delimiter='\t')
-            output_writer.writerow(header_1)
-        with open(outfile_2, 'w', newline='') as csvfile_2:
-            output_writer = csv.writer(csvfile_2, delimiter='\t')
-            output_writer.writerow(header_2)
+        # with open(outfile_1, 'w', newline='') as csvfile_1:
+        #     output_writer = csv.writer(csvfile_1, delimiter='\t')
+        #     output_writer.writerow(header_1)
+        # with open(outfile_2, 'w', newline='') as csvfile_2:
+        #     output_writer = csv.writer(csvfile_2, delimiter='\t')
+        #     output_writer.writerow(header_2)
     generate_summary(infile, ignore, outfile_1, outfile_2)
 
     print("Predicted mutations saved as: " + outfile_1  + "\n")
